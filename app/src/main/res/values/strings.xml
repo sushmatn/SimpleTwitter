@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twitter</string>
+    <string name="login_label">Connect to Twitter</string>
+    <string name="title_activity_timeline">Home Timeline</string>
+    <string name="tweetDefault">What\'s happening?</string>
+    <string name="btnTweet">Tweet</string>
+    <string name="defTweetLength">140</string>
+    <string name="networkUnavailable">Network is unavailable. Cannot retrieve new tweets or post updates at this moment.</string>
+
+    <string name="action_compose">Compose</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_compose_tweet">ComposeTweetActivity</string>
+    <string name="reply">Reply to the tweet</string>
+    <string name="replyTo">In reply to</string>
+    <string name="tweetSent">Reply sent successfully</string>
+
+    <string name="retweets">RETWEETS</string>
+    <string name="favorites">FAVORITES</string>
+
+    <string name="title_activity_tweet_detail">Tweet</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="following">Following</string>
+    <string name="followers">Followers</string>
+    <string name="loading">Loading...</string>
+    <string name="sendmsgfailed">Message send failed</string>
+    <string name="title_activity_friendship">FriendshipActivity</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_message">Messages</string>
+    <string name="action_message">New Message</string>
+    <string name="message">Messages</string>
+    <string name="enterRecipient">Enter a name</string>
+    <string name="enterReply">Start a new message</string>
+    <string name="cancel">CANCEL</string>
+    <string name="send">SEND</string>
+    <string name="title_activity_test">TestActivity</string>
+
+</resources>
