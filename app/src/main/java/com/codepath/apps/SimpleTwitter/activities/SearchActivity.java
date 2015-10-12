@@ -63,9 +63,32 @@ public class SearchActivity extends AppCompatActivity
         getSupportActionBar().setLogo(getResources().getDrawable(R.mipmap.ic_launcher));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Search Results for " + mQuery);
-
+        getSupportActionBar().setTitle("Search Results");
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                TweetsListFragment fragmentTweetsList = (TweetsListFragment) adapter.instantiateItem(viewPager, viewPager.getCurrentItem());
+                fragmentTweetsList.onSearch(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
+    }
+
 
     @Override
     public void onReTweet(Tweet tweet, Tweet newTweet) {

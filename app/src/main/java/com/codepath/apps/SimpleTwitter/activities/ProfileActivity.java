@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.SimpleTwitter.R;
@@ -58,10 +59,17 @@ public class ProfileActivity extends AppCompatActivity
 
         if (getIntent().hasExtra("user")) {
             currentUser = getIntent().getParcelableExtra("user");
-            screenName = currentUser.getScreenName();
+            if (currentUser != null)
+                screenName = currentUser.getScreenName();
         } else if (getIntent().hasExtra(Helper.SCREEN_NAME)) {
             screenName = getIntent().getStringExtra(Helper.SCREEN_NAME);
             getUser(screenName);
+        }
+
+        if (currentUser == null && screenName == null && !Helper.isNetworkAvailable(this)) {
+            Toast.makeText(this, getResources().getString(R.string.cannotShowProfile), Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -199,6 +207,10 @@ public class ProfileActivity extends AppCompatActivity
     }
 
     private void getUser(String screenName) {
+        if (!Helper.isNetworkAvailable(this)) {
+            return;
+        }
+
         TwitterApplication.getRestClient().getUser(screenName, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, JSONObject response) {

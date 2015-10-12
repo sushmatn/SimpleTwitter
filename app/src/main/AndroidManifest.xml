@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codepath.apps.SimpleTwitter"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="AA_DB_NAME"
             android:value="RestClient.db" />
@@ -31,7 +31,7 @@
             android:name=".activities.LoginActivity"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,11 +64,12 @@
             android:label="@string/title_activity_friendship" />
         <activity
             android:name=".activities.SearchActivity"
-            android:label="@string/title_activity_search" />
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".activities.TimelineActivity" />
         <activity
             android:name=".activities.MessageActivity"
-            android:label="@string/title_activity_message" >
-        </activity>
+            android:label="@string/title_activity_message"
+            android:parentActivityName=".activities.TimelineActivity"></activity>
     </application>
 
 </manifest>

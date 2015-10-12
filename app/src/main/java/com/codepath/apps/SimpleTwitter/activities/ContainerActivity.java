@@ -37,7 +37,7 @@ public class ContainerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
 
-        Helper.ListType listType = Helper.ListType.values()[getIntent().getIntExtra(Helper.LIST_TYPE, 0)];
+        listType = Helper.ListType.values()[getIntent().getIntExtra(Helper.LIST_TYPE, 0)];
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayUseLogoEnabled(true);

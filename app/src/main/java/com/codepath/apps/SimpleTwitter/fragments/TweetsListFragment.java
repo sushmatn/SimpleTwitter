@@ -53,6 +53,7 @@ public class TweetsListFragment extends ListFragment {
     TwitterClient client;
     TweetListType tweetListType;
     MenuItem miActionProgressItem;
+    String mResultsParameter;
 
     public TweetsListFragment() {
         // Required empty public constructor
@@ -82,6 +83,7 @@ public class TweetsListFragment extends ListFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tweets_list, container, false);
         setupViews(view);
+        mResultsParameter = getArguments().getString(Helper.SCREEN_NAME);
         populateList(FIRST_PAGE);
         return view;
     }
@@ -154,11 +156,11 @@ public class TweetsListFragment extends ListFragment {
         else if (tweetListType == TweetListType.MENTIONS_TIMELINE)
             client.getMentionsTimeLine(max_id, handler);
         else if (tweetListType == TweetListType.USER_TIMELINE)
-            client.getUserTimeLine(getArguments().getString(Helper.SCREEN_NAME), max_id, handler);
+            client.getUserTimeLine(mResultsParameter, max_id, handler);
         else if (tweetListType == TweetListType.FAVORITES_LIST)
-            client.getFavoritesList(getArguments().getString(Helper.SCREEN_NAME), max_id, handler);
-        else if(tweetListType == TweetListType.SEARCHED_TWEETS)
-            client.SearchTweets(getArguments().getString(Helper.SCREEN_NAME), max_id, handler);
+            client.getFavoritesList(mResultsParameter, max_id, handler);
+        else if (tweetListType == TweetListType.SEARCHED_TWEETS)
+            client.SearchTweets(mResultsParameter, max_id, handler);
     }
 
     JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
@@ -183,9 +185,9 @@ public class TweetsListFragment extends ListFragment {
                     Tweet mostRecentTweet = tweetArrayList.get(tweetArrayList.size() - 1);
                     maxID = mostRecentTweet.getTweetId();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            catch (Exception e)
-            { e.printStackTrace();}
             swipeContainer.setRefreshing(false);
             hideProgressBar();
         }
@@ -218,6 +220,13 @@ public class TweetsListFragment extends ListFragment {
 
         aTweets.remove(tweet);
         aTweets.insert(tweet, position);
+    }
+
+    public void onSearch(String query) {
+        aTweets.clear();
+        mResultsParameter = query;
+        tweetListType = TweetListType.SEARCHED_TWEETS;
+        populateList(FIRST_PAGE);
     }
 
     public void onFavorite(final Tweet tweet, Tweet newTweet) {

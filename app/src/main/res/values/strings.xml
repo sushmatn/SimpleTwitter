@@ -40,6 +40,6 @@
     <string name="enterReply">Start a new message</string>
     <string name="cancel">CANCEL</string>
     <string name="send">SEND</string>
-    <string name="title_activity_test">TestActivity</string>
+    <string name="cannotShowProfile">Cannot display user profile at this time</string>
 
 </resources>
